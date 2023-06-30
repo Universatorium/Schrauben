@@ -48,7 +48,7 @@ function normalizePort(val) {
 
   return false;
 }
-
+console.log('Server is listening on Port '+ port)
 /**
  * Event listener for HTTP server "error" event.
  */
