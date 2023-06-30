@@ -3,3 +3,11 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  h1 Schrauben
+  ul
+      each schraube in schrauben 
+        li
+          |(#{schraube.Schraube})
+
+      else
+        li Es gibt keine Bücher.
