@@ -1,24 +1,19 @@
 {
   "name": "schrauben",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "start": "node ./bin/www"
   },
-  "devDependencies": {
-    "parcel": "^2.6.2"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
-    "@cubejs-client/core": "^0.31.0",
-    "chart": "^0.1.2",
-    "chart.js": "^4.3.0",
-    "express": "^4.18.2",
-    "mongodb": "^5.6.0",
-    "mongoose": "^7.3.1"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.3.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "mongoose": "^7.3.1",
+    "morgan": "~1.9.1",
+    "pug": "2.0.0-beta11",
+    "chart.js": "^4.3.0"
   }
 }
