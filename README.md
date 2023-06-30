@@ -1,7 +1,7 @@
 # Schrauben
 
 Einleitung:
-Dieses Projekt umfasst die Entwicklung einer Webanwendung unter Verwendung von MongoDB als Datenbank, einem Express Server als Backend-Framework, Node.js als Laufzeitumgebung und Pug als Template-Engine für die Darstellung von HTML-Inhalten.
+Dieses Projekt umfasst die Entwicklung einer Webanwendung unter Verwendung von MongoDB als Datenbank, einem Express Server als Backend-Framework, Node.js als Laufzeitumgebung und Pug als Template-Engine für die Darstellung von HTML-Inhalten. Es werden auch zusätzliche Abhängigkeiten wie chart.js für die Integration von Diagrammen verwendet.
 
 Voraussetzungen:
 Bevor Sie mit dem Projekt beginnen, stellen Sie sicher, dass folgende Voraussetzungen erfüllt sind:
