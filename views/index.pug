@@ -6,3 +6,13 @@ block content
   h1 Schrauben
   img(src="/images/schraube.jpg", alt="test")
   pre= JSON.stringify(schrauben, null, 2)
+
+  canvas(id="top3schrauben", width="400", height="400")
+
+  each chart in charts
+    script(src=`/javascripts/${chart}.js`)
+
+  script.
+    const topSchraubenData = !{JSON.stringify(schrauben)};
+    drawTop3SchraubenChart(topSchraubenData);
+  
