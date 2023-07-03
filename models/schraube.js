@@ -8,4 +8,6 @@ const schraubeSchema = new mongoose.Schema({
   Datum: Date
 });
 
-module.exports = mongoose.model("Schrauben", schraubeSchema);
+const schraubenModel = mongoose.model("Schrauben", schraubeSchema,'Schrauben');
+
+module.exports = schraubenModel;
