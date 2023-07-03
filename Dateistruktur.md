@@ -1,0 +1,11 @@
+Schrauben
+    bin
+        -www
+    controllers
+        -schraubenController.js
+    models
+        -schraube.js
+    public
+    routes
+    src
+    views
