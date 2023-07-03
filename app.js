@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const schraube = require('./models/schraube');
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -19,8 +22,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+ app.use('/', indexRouter);
+ app.use('/users', usersRouter);
+
+app.get("/ja", async (req, res, next) => {
+  try {
+    const all = await schraube.find();
+    res.json(all);
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,6 +67,7 @@ main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
 }
+
 
 
 module.exports = app;
