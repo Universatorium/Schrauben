@@ -1,9 +1,11 @@
 const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
+const charts = ['bestdayever','bestdayofweek','gsmth','HerstellerSchrauben','saph','schraubenart','top3hersteller','top3schrauben'];
+
 exports.getSchrauben = asyncHandler(async (req, res, next) => {
   const schrauben = await schraube.find();
-  res.render("index", { schrauben });
+  res.render("index", { schrauben, charts });
 });
 
 exports.gettopsales = asyncHandler(async (req, res, next) => {
@@ -14,7 +16,7 @@ exports.gettopsales = asyncHandler(async (req, res, next) => {
     { $limit: 3 },
     { $project: { _id: 0, Schraube: "$_id", VerkaufteMenge: 1 } }
   ]);
-  res.render("index", { schrauben: topSchrauben });
+  res.render("index", { schrauben: topSchrauben, charts });
 });
 
 exports.getTopHersteller = asyncHandler(async (req, res, next) => {
