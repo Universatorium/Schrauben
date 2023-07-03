@@ -11,3 +11,5 @@ a) Node.js und npm: Stellen Sie sicher, dass Sie Node.js und npm (Node Package M
 b) MongoDB: Installieren Sie MongoDB auf Ihrem System oder nutzen Sie eine gehostete MongoDB-Dienstleistung. Stellen Sie sicher, dass Sie die Verbindungs-URL und Anmeldeinformationen für Ihre MongoDB-Datenbank bereit haben.
 
 Projektstruktur:
+
+Die vollständige Dateistruktur des Projekts finden Sie in der [Dateistruktur.md](./dateistruktur.md).
