@@ -1,11 +1,11 @@
-const Schraube = require("../models/schraube");
+const Schrauben = require("../models/schraube");
 const asyncHandler = require("express-async-handler");
 
-console.log("hi")
+console.log("test")
+
 exports.getSchrauben = asyncHandler(async (req, res, next) => {
-    console.log("hi2")
-  const schrauben = await Schraube.find();
-  console.log("hi3")
-    console.log(schrauben)
+  const schrauben = await Schrauben.find();
+  console.log("lero")
+  console.log(schrauben)
   res.render("index", { schrauben });
 });

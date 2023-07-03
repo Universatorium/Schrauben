@@ -1,5 +1,3 @@
-// models/schraube.js
-
 const mongoose = require("mongoose");
 
 const schraubeSchema = new mongoose.Schema({
@@ -10,4 +8,4 @@ const schraubeSchema = new mongoose.Schema({
   Datum: Date
 });
 
-module.exports = mongoose.model("Schraube", schraubeSchema);
+module.exports = mongoose.model("Schrauben", schraubeSchema);
