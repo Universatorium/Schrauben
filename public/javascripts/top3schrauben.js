@@ -1,5 +1,5 @@
 function drawTop3SchraubenChart(topSchraubenData) {
-  const top3schraubenChart = new Chart(document.getElementById('top3schrauben'), {
+  new Chart(document.getElementById('top3schrauben'), {
     type: 'bar',
     data: {
       labels: topSchraubenData.map(schraube => schraube.Schraube),
