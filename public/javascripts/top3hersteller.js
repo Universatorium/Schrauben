@@ -1,13 +1,11 @@
-// Top 3 Hersteller: Präsentiert die drei Hersteller mit den höchsten Verkaufszahlen.
-
-function drawTop3HerstellerChart(topHerstellerData) {
-  new Chart(document.getElementById('top3hersteller'), {
+function drawTop3HerstellerChart(data) {
+  new Chart(document.getElementById('top3Hersteller'), {
     type: 'bar',
     data: {
-      labels: topSchraubenData.map(schraube => schraube.Schraube),
+      labels: data.map(schraube => schraube.Hersteller),
       datasets: [{
         label: 'Top 3 Hersteller',
-        data: topHerstellerData.map(schraube => schraube.VerkaufteMenge),
+        data: data.map(schraube => schraube.VerkaufteMenge),
         backgroundColor: [
           "Red", "Blue", "Yellow"
         ],

@@ -1,13 +1,13 @@
 // Bester Verkaufstag insgesamt: Identifiziert und zeigt den Tag mit den höchsten Gesamtverkaufszahlen an.
 
-function drawTop3SchraubenChart(bestdayever) {
+function drawbestdayever(data) {
   new Chart(document.getElementById('bestdayever'), {
     type: 'line',
     data: {
-      labels: bestdayeverData.map(schraube => schraube.Schraube),
+      labels: data.map(day => day.label),
       datasets: [{
-        label: 'Bester Verkaufstag insgesamt',
-        data: bestdayeverData.map(schraube => schraube.VerkaufteMenge),
+        label: 'Top 3 Verkaufstage',
+        data: data.map(day => day.totalSales),
         backgroundColor: [
           "Red", "Blue", "Yellow"
         ],
