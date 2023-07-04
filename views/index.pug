@@ -21,7 +21,8 @@ block content
 
   each chart in charts
     script(src=`/javascripts/${chart}.js`)
+    
 
   script.
-    const topSchraubenData = !{JSON.stringify(schrauben)};
+    const topSchraubenData = !{JSON.stringify(topSchrauben)};
     drawTop3SchraubenChart(topSchraubenData);

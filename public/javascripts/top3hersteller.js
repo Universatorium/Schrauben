@@ -14,14 +14,14 @@ new Chart(bc, {
       ],
       borderWidth: 1
 
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
       }
     }
-  }
-});
-  
+  });
+}   
