@@ -10,6 +10,7 @@ block content
   canvas(id="top3Schrauben", width="400", height="400")
   canvas(id="top3Hersteller", width="400", height="400")
   canvas(id="bestdayever", width="400", height="400")
+  canvas(id="bestDayOfWeek", width="400", height="400")
 
   each chart in charts
     script(src=`/javascripts/${chart}.js`)
@@ -22,4 +23,6 @@ block content
     drawTop3HerstellerChart(topHerstellerData);
     const bestDayData = !{JSON.stringify(bestday)};
     drawbestdayever(bestDayData);
+    const bestDayofWeekData = !{JSON.stringify(bestDayOfWeek)};
+    drawBestDayOfWeekChart(bestDayofWeekData);
   

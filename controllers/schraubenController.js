@@ -1,8 +1,8 @@
 const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
-const charts = ['bestdayever','top3hersteller','top3schrauben'];
-//,'gsmth','bestdayofweek','gsmth','HerstellerSchrauben','saph','schraubenart',
+const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek'];
+//,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
 exports.getIndexPage = asyncHandler(async (req, res, next) => {
   const topSchrauben = await schraube.aggregate([
     { $sort: { VerkaufteMenge: -1 } },
@@ -52,7 +52,28 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   ]);
   console.log(bestday);
 
-  res.render("index", { topSchrauben, topHersteller, bestday, charts });
+  //bestDayofWeek
+  const sort = await schraube.aggregate([
+    {
+      $group: {
+        _id: { $dayOfWeek: { $toDate: "$Datum" } },
+        averageSales: { $avg: "$VerkaufteMenge" }
+      }
+    },
+    { $sort: { "_id": 1 } },
+    { $project: { _id: 0, dayOfWeek: "$_id", averageSales: 1 } }
+  ]);
+  
+  const slice = sort.map(item => {
+    console.log(item); // Konsolenausgabe des Wochentags als Zahl
+    return item;
+  });
+  
+  const bestDayOfWeek = [...slice.slice(1), slice[0]];
+  
+  console.log(bestDayOfWeek);
+  
+  res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts });
 });
 
 
