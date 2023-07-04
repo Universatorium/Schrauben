@@ -1,6 +1,6 @@
 function drawTop3SchraubenChart(data) {
   new Chart(document.getElementById('top3Schrauben'), {
-    type: 'bar',
+    type: 'doughnut',
     data: {
       labels: data.map(schraube => schraube.Schraube),
       datasets: [{
