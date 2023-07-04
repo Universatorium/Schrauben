@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+
+.chart-container {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;  /* Teilt den Container in zwei Spalten auf */
+  grid-gap: 10px;  /* Abstand zwischen den Elementen */
+}
+
+.chart1 {
+  grid-column-start: 1;
+  position: left;
+  flex-direction: row;
+  justify-content: center;
+  height: 25em;
+}
+
+.chart2 {
+  grid-column-start: 2;  /* Beginnt in der zweiten Spalte */
+  position: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 25em;
+}

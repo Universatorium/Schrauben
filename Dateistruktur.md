@@ -1,11 +1,30 @@
-Schrauben
-    bin
+/Schrauben
+    /bin
         -www
-    controllers
+    /controllers
         -schraubenController.js
-    models
+    /models
         -schraube.js
-    public
-    routes
-    src
-    views
+    /public
+        /images
+            -schraube.jpg
+        /javascripts
+            - ...
+        /stylesheets
+            -style.css
+    /routes
+        -index.js
+        -users.js
+    /src
+        -aquisitiioin.js
+        -api.js
+        -index.html
+    /views
+        -error.pug
+        -index.pug
+        -layout.pug
+        -navbar.pug
+    app.js
+    README.md
+    DATEISTRUKTUR.md
+    SECURITY.md

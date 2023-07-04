@@ -10,7 +10,7 @@ new Chart(sa, {
         'Zylinderschraube', 'Betonschraube', 'Tellerkopfschraube' 
     ],
     datasets: [{
-      label: 'Monat XY',
+      label: 'Schraubenart',
       data: [12, 30, 55, 48, 16, 48, 47, 50],
       backgroundColor: [
         "Red", "Blue", "Yellow", "Green", "Grey", "Magenta", "Orange", "Brown"
