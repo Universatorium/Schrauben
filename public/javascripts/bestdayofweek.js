@@ -1,15 +1,17 @@
 // Durchschnittlich beste Verkaufstag pro Woche: Ermittelt und visualisiert den Wochentag, 
 // an dem im Durchschnitt die besten Verkaufszahlen erzielt werden.
 
-function drawbestdayofweek(data) {
-  new Chart(document.getElementById('bestdayofweek'), {
+function drawBestDayOfWeekChart(data) {
+  new Chart(document.getElementById('bestDayOfWeek'), {
     type: 'line',
     data: {
-      labels: data.map(day => day.label),
+      labels: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'],
       datasets: [{
-        label: 'Durchschnittlich beste Verkaufstag pro Woche',
-        data: data.map(day => day.totalSales),
-        borderWidth: 3
+        label: 'Durchschnittlicher Verkauf pro Wochentag',
+        data: data.map(day => day.averageSales),
+        backgroundColor: 'rgba(0, 0, 255, 0.5)',
+        borderWidth: 3,
+        fill: 'start'
       }]
     },
     options: {
