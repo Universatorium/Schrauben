@@ -3,14 +3,15 @@
 
 function drawBestDayOfWeekChart(data) {
   new Chart(document.getElementById('bestDayOfWeek'), {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'],
       datasets: [{
         label: 'Durchschnittlicher Verkauf pro Wochentag',
         data: data.map(day => day.averageSales),
-        backgroundColor: 'Blue',
-        borderWidth: 3
+        backgroundColor: 'rgba(0, 0, 255, 0.5)',
+        borderWidth: 3,
+        fill: 'start'
       }]
     },
     options: {

@@ -2,7 +2,7 @@
 
 function drawbestdayever(data) {
   new Chart(document.getElementById('bestdayever'), {
-    type: 'line',
+    type: 'bar',
     data: {
       labels: data.map(day => day.label),
       datasets: [{
