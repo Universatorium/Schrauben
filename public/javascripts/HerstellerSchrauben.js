@@ -3,27 +3,23 @@
 // die von einem bestimmten Hersteller (Hersteller X) stammen.
 
 
-
-const hs = document.getElementById('polarChart');
-
-new Chart(hs, {
-  type: 'doughnut',
-  data: {
-    labels: [
-      'Sechskantschraube', 'Holzschraube', 'Maschinenschraube', 'Universalschraube', 'Senkkopfschraube',
-      'Zylinderschraube', 'Betonschraube', 'Tellerkopfschraube' 
-  ],
-    datasets: [{
-      label: 'Prozentualer Anteil', 
-      data: [12, 19, 13, 15, 20, 18, 10, 14],
-      borderWidth: 2
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
+function drawHerstellerSchrauben(data) {
+  new Chart(document.getElementById('HerstellerSchrauben'), {
+    type: 'doughnut',
+    data: {
+      labels: data.map(day => day.label),
+      datasets: [{
+        label: 'Prozentualer Anteil', 
+        data: data.map(day => day.totalSales),
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
       }
     }
-  }
-});
+  });
+}
