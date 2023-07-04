@@ -11,7 +11,7 @@ new Chart(gsmth, {
       label: 'Gesamtumsatz pro Hersteller für einen Monat',
       data: [12, 30, 55],
       backgroundColor: [
-        "Red", "Blue", "Yellow", "Green", "Grey", "Magenta", "Orange", "Brown"
+        "Red", "Blue", "Yellow"
       ],
       borderWidth: 1
     
