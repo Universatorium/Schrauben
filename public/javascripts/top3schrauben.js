@@ -1,5 +1,7 @@
-function drawTop3SchraubenChart(data) {
-  new Chart(document.getElementById('top3Schrauben'), {
+// Top 3 Schrauben: Zeigt die drei Schraubenarten, die die höchsten Verkaufszahlen aufweisen.
+
+function drawTop3SchraubenChart(topSchraubenData) {
+  new Chart(document.getElementById('top3schrauben'), {
     type: 'bar',
     data: {
       labels: data.map(schraube => schraube.Schraube),
