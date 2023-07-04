@@ -8,7 +8,7 @@ new Chart(bc, {
     labels: ['Wuerth', 'HECO', 'SWG'],
     datasets: [{
       label: 'Top 3 Hersteller',
-      data: [12, 19, 3],
+      data: [17, 14, 12],
       backgroundColor: [
         "Red", "Blue", "Yellow"
       ],

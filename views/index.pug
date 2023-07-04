@@ -7,16 +7,17 @@ block content
       //- p Welcome to #{title}
       //- h1 Schrauben
       canvas(id="top3hersteller", width="100", height="80")
-      canvas(id="top3schrauben", width="100", height="80")
       //- canvas(id="HerstellerSchraube", width="100", height="80")
 
       //- img(src="/images/schraube.jpg", alt="test")
       //- pre= JSON.stringify(schrauben, null, 2)
     
     .chart2
+      canvas(id="top3schrauben", width="100", height="80")
+
+    .chart3   
+      //- canvas(id="saph", width="100", height="80")
       canvas(id="schraubenart", width="100", height="80")
-      canvas(id="saph", width="100", height="80")
-      canvas(id="gsmth", width="100", height="80")
 
   each chart in charts
     script(src=`/javascripts/${chart}.js`)

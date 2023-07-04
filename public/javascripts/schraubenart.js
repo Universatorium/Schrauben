@@ -3,7 +3,7 @@
 const sa = document.getElementById('schraubenart');
 
 new Chart(sa, {
-  type: 'bar',
+  type: 'doughnut',
   data: {
     labels: [
         'Sechskantschraube', 'Holzschraube', 'Maschinenschraube', 'Universalschraube', 'Senkkopfschraube',

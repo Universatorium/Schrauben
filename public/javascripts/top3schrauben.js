@@ -6,7 +6,7 @@ function drawTop3SchraubenChart(topSchraubenData) {
       datasets: [{
         label: 'Top 3 Schrauben',
         data: topSchraubenData.map(schraube => schraube.VerkaufteMenge),
-        backgroundColor: ['Red', 'Blue', 'Yellow'],
+        backgroundColor: ['Magenta', 'Green', 'Orange'],
         borderWidth: 1
       }]
     },

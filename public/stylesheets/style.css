@@ -9,16 +9,23 @@ a {
 
 .chart-container {
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr;  /* Teilt den Container in zwei Spalten auf */
-  grid-gap: 10px;  /* Abstand zwischen den Elementen */
+  grid-template-columns: 1fr 1fr 1fr;  /* Teilt den Container in drei Spalten auf */
+  grid-gap: 10px; /* Abstand zwischen den Elementen */
+  margin-top: 100px; 
+  padding: 20px;
+  border: 1px;
 }
 
 .chart1 {
   grid-column-start: 1;
-  position: left;
+  position: flex;
   flex-direction: row;
   justify-content: center;
-  height: 25em;
+  height: 30em;
+  border: 2px;
+  border-style: double;
+  border-color: #314952;
+  border-radius: 5px;
 }
 
 .chart2 {
@@ -26,5 +33,21 @@ a {
   position: flex;
   flex-direction: row;
   justify-content: center;
-  height: 25em;
+  height: 30em;
+  border: 2px;
+  border-style: double;
+  border-color: #20363e;
+  border-radius: 5px;
+}
+
+.chart3 {
+  grid-column-start: 3;  /* Beginnt in der zweiten Spalte */
+  position: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 30em;
+  border: 2px;
+  border-style: double;
+  border-color: #192428;
+  border-radius: 5px;
 }
