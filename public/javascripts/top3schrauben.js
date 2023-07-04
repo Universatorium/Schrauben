@@ -1,11 +1,11 @@
-function drawTop3SchraubenChart(topSchraubenData) {
-  new Chart(document.getElementById('top3schrauben'), {
+function drawTop3SchraubenChart(data) {
+  new Chart(document.getElementById('top3Schrauben'), {
     type: 'bar',
     data: {
-      labels: topSchraubenData.map(schraube => schraube.Schraube),
+      labels: data.map(schraube => schraube.Schraube),
       datasets: [{
         label: 'Top 3 Schrauben',
-        data: topSchraubenData.map(schraube => schraube.VerkaufteMenge),
+        data: data.map(schraube => schraube.VerkaufteMenge),
         backgroundColor: ['Red', 'Blue', 'Yellow'],
         borderWidth: 1
       }]

@@ -7,12 +7,22 @@ block content
   img(src="/images/schraube.jpg", alt="test")
   pre= JSON.stringify(schrauben, null, 2)
 
-  canvas(id="top3schrauben", width="400", height="400")
+  canvas(id="top3Schrauben", width="400", height="400")
+  canvas(id="top3Hersteller", width="400", height="400")
+  canvas(id="bestdayever", width="400", height="400")
+  canvas(id="bestDayOfWeek", width="400", height="400")
 
   each chart in charts
     script(src=`/javascripts/${chart}.js`)
+    
 
   script.
-    const topSchraubenData = !{JSON.stringify(schrauben)};
+    const topSchraubenData = !{JSON.stringify(topSchrauben)};
     drawTop3SchraubenChart(topSchraubenData);
+    const topHerstellerData = !{JSON.stringify(topHersteller)};
+    drawTop3HerstellerChart(topHerstellerData);
+    const bestDayData = !{JSON.stringify(bestday)};
+    drawbestdayever(bestDayData);
+    const bestDayofWeekData = !{JSON.stringify(bestDayOfWeek)};
+    drawBestDayOfWeekChart(bestDayofWeekData);
   
