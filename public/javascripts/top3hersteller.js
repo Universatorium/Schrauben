@@ -1,18 +1,17 @@
 // Top 3 Hersteller: Präsentiert die drei Hersteller mit den höchsten Verkaufszahlen.
 
-const bc = document.getElementById('top3hersteller');
-
-new Chart(bc, {
-  type: 'bar',
-  data: {
-    labels: ['Wuerth', 'HECO', 'SWG'],
-    datasets: [{
-      label: 'Top 3 Hersteller',
-      data: [17, 14, 12],
-      backgroundColor: [
-        "Red", "Blue", "Yellow"
-      ],
-      borderWidth: 1
+function drawTop3HerstellerChart(data) {
+  new Chart(document.getElementById('top3Hersteller'), {
+    type: 'bar',
+    data: {
+      labels: data.map(schraube => schraube.Hersteller),
+      datasets: [{
+        label: 'Top 3 Hersteller',
+        data: data.map(schraube => schraube.VerkaufteMenge),
+        backgroundColor: [
+          "Red", "Blue", "Yellow"
+        ],
+        borderWidth: 1
 
       }]
     },
