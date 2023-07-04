@@ -6,20 +6,18 @@ block content
       //- h1= title
       //- p Welcome to #{title}
       //- h1 Schrauben
-      canvas(id="top3Hersteller", width="100", height="80")
+      canvas(id="top3Hersteller", width="80", height="80")
       //- canvas(id="HerstellerSchraube", width="100", height="80")
 
       //- img(src="/images/schraube.jpg", alt="test")
       //- pre= JSON.stringify(schrauben, null, 2)
     
     .chart2
-      canvas(id="top3Schrauben", width="100", height="80")
-
+      canvas(id="top3Schrauben", width="80", height="80")
     .chart3   
-      //- canvas(id="saph", width="100", height="80")
-      canvas(id="bestdayever", width="100", height="80")
-    .chart3   
-      canvas(id="bestDayOfWeek", width="100", height="80")
+      canvas(id="bestdayever", width="80", height="80")
+    .chart2  
+      canvas(id="bestDayOfWeek", width="80", height="80")
 
   each chart in charts
     script(src=`/javascripts/${chart}.js`)

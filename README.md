@@ -14,8 +14,6 @@ Die vollständige Dateistruktur des Projekts finden Sie in der [DATEISTRUKTUR.md
 
 Anforderungen:
 
-mockup.jepg
-
 Übersichts-Dashboard:
 Top 3 Schrauben: Zeigt die drei Schraubenarten, die die höchsten Verkaufszahlen aufweisen.
 
@@ -42,3 +40,6 @@ Hersteller Einzelansicht:
 Füge pro Hersteller eine Einzelansicht hinzu, die alle relevanten Analysen (Umsatz, Menge, Trends) für diesen Hersteller darstellt.
 
 Binde das Logo des Herstellers ein und füge die passenden Diagramme hinzu.
+
+--------------------------------------------------------------------------------------------------------------------
+
