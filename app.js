@@ -25,26 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
  app.use('/', indexRouter);
  app.use('/users', usersRouter);
 
-app.get("/ja", async (req, res, next) => {
-  try {
-    const all = await schraube.find();
-    res.json(all);
-  } catch (err) {
-    next(err);
-  }
-});
 
-app.get('/api/schrauben', async (req, res) => {
-  try {
-    // Daten aus der MongoDB abrufen
-    const schrauben = await Schraube.find();
-
-    // Daten als JSON an das JavaScript senden
-    res.json(schrauben);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Fehler beim Abrufen der Daten' });
-  }
+app.get('/details/:hersteller', async (req, res) => {
+  const hersteller = req.params.hersteller;
+  res.render('details', hersteller);
 });
 
 // catch 404 and forward to error handler
