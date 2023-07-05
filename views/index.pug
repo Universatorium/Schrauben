@@ -18,8 +18,15 @@ block content
     .chart3   
       //- canvas(id="saph", width="100", height="80")
       canvas(id="bestdayever", width="100", height="80")
-    .chart3   
+    .chart4   
       canvas(id="bestDayOfWeek", width="100", height="80")
+
+    .chart5   
+      canvas(id="bestDayOfWeek", width="100", height="80")
+      select(id="herstellerDropdown", onchange="updateHerstellerData()")
+        option(value="hersteller1") HECO
+        option(value="hersteller2") Wuerth
+        option(value="hersteller3") SWG
 
   each chart in charts
     script(src=`/javascripts/${chart}.js`)
