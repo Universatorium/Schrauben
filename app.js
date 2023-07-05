@@ -26,11 +26,6 @@ app.use(express.static(path.join(__dirname, 'public')));
  app.use('/users', usersRouter);
 
 
-app.get('/details/:hersteller', async (req, res) => {
-  const hersteller = req.params.hersteller;
-  res.render('details', {hersteller}); //geschweifte klammern haben gefehlt, man kann nur Objekte uebergebe und keine Variablen
-});
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
