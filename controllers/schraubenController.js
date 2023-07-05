@@ -2,6 +2,7 @@ const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
 const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek'];
+const herstellercharts =['details'];
 //,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
 exports.getIndexPage = asyncHandler(async (req, res, next) => {
 
@@ -80,7 +81,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts });
 });
 
-
+//Prozentualer Anteil der Schraubenverkäufe von Hersteller X
 exports.getDetailPage = asyncHandler(async (req, res, next) => {
    const hersteller = req.params.hersteller
    const logo = '/images/${hersteller}.svg'
