@@ -2,6 +2,7 @@ const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
 const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek'];
+const herstellercharts =['details'];
 //,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
 exports.getIndexPage = asyncHandler(async (req, res, next) => {
 
@@ -80,10 +81,33 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts });
 });
 
-
+//Prozentualer Anteil der Schraubenverkäufe von Hersteller X
 exports.getDetailPage = asyncHandler(async (req, res, next) => {
-   const hersteller = req.params.hersteller
-   res.render("details", { hersteller, charts });
+  const hersteller = req.params.hersteller;
+
+const totalSales = await schraube.aggregate([
+  { $match: { Hersteller: hersteller } },
+  { $group: { _id: null, total: { $sum: '$VerkaufteMenge' } } }
+]);
+
+const total = totalSales[0].total;
+
+const schraubenarten = await schraube.aggregate([
+  { $match: { Hersteller: hersteller } },
+  { $group: { _id: '$Schraube', count: { $sum: '$VerkaufteMenge' } } }
+]);
+
+const percentageData = schraubenarten.map(schraube => ({
+  schraubenart: schraube._id,
+  percentage: (schraube.count / total) * 100
+}));
+
+percentageData.forEach(schraube => {
+  console.log(`Schraube: ${schraube.schraubenart}, Prozent: ${schraube.percentage}%`);
+});
+
+res.render('details', { hersteller, percentageData, herstellercharts });
+  
  });
 
 
