@@ -4,6 +4,8 @@ const asyncHandler = require("express-async-handler");
 const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek'];
 //,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
 exports.getIndexPage = asyncHandler(async (req, res, next) => {
+
+  //Top 3 Schrauben
   const topSchrauben = await schraube.aggregate([
     { $sort: { VerkaufteMenge: -1 } },
     { $group: { _id: "$Schraube", VerkaufteMenge: { $first: "$VerkaufteMenge" } } },
@@ -13,6 +15,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   ]);
   console.log(topSchrauben);
 
+  //Top 3 Hersteller
   const topHersteller = await schraube.aggregate([
     { $group: { _id: "$Hersteller", VerkaufteMenge: { $sum: "$VerkaufteMenge" } } },
     { $sort: { VerkaufteMenge: -1 } },
@@ -21,6 +24,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   ]);
   console.log(topHersteller);
 
+  //Bester Verkaufstag insgesamt
   const bestday = await schraube.aggregate([
     {
       $group: {
@@ -77,10 +81,10 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
 });
 
 
-// exports.getSchrauben = asyncHandler(async (req, res, next) => {
-//   const schrauben = await schraube.find();
-//   res.render("index", { schrauben, charts });
-// });
+exports.getDetailPage = asyncHandler(async (req, res, next) => {
+   const hersteller = req.params.hersteller
+   res.render("details", { hersteller, charts });
+ });
 
 
 
