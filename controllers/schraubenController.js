@@ -83,6 +83,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
 
 exports.getDetailPage = asyncHandler(async (req, res, next) => {
    const hersteller = req.params.hersteller
+   const logo = '/images/${hersteller}.svg'
    res.render("details", { hersteller, charts });
  });
 

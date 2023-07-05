@@ -51,3 +51,8 @@ a {
   border-color: #192428;
   border-radius: 5px;
 }
+
+.image{
+  height: 100px;
+  width: 100px;
+}
