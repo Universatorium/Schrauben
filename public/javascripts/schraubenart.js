@@ -18,6 +18,8 @@ function drawschraubenart(data) {
     options: {
       scales: {
         y: {
+          
+          min:25000,
           beginAtZero: false
         }
       }

@@ -2,30 +2,36 @@ extends layout
 
 block content
   .chart-container
-    .chart1
-      canvas(id="top3Hersteller", width="80", height="60")
-      canvas(id="SchraubePerMonths", width="80", height="60")
-
-    .chart2
-      canvas(id="top3Schrauben", width="80", height="60")
-
-    .chart3   
-      canvas(id="bestdayever", width="80", height="60")
-      canvas(id="bestDayOfWeek", width="80", height="60")
 
     .chart1  
-      h1 Umsatz für #{schraubenart} Monat #{monat}
+      
+      h5 Umsatz für #{schraubenart} pro Tag #{monat}
 
       form(action="/" method="GET")
         select(id='schraubenartDropdown' name="schraubenart")
           option(value=''>Alle Schraubenarten)
           each schraubenart in schraubenarten
             option(value=schraubenart)= schraubenart
+        = '\u00A0\u00A0' 
         select(id='monatDropdown' name="monat")
-          option(value=''>Alle Monate)
+          option(value='2023-06'>Alle Monate)
           each monat in monate
             option(value=monat)= monat
+        = '\u00A0\u00A0' 
         button(type="submit") Umsatz anzeigen
+      canvas(id="SchraubePerMonths", width="80", height="60")
+    .chart2
+      canvas(id="top3Hersteller", width="80", height="60")
+    .chart3
+      canvas(id="bestDayOfWeek", width="80", height="60")
+
+    .chart2
+      canvas(id="top3Schrauben", width="80", height="60")
+
+    .chart3   
+      canvas(id="bestdayever", width="80", height="60")
+
+    
     
 
 
