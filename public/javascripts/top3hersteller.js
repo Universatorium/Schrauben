@@ -19,4 +19,5 @@ function drawTop3HerstellerChart(data) {
         }
       }
     }
+});
 }
