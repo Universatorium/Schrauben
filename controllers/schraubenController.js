@@ -175,7 +175,7 @@ percentageData.forEach(schraube => {
   console.log(umsatzData)
   console.log(schraubenart)
 
-res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben,schraubenart });
+res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben, schraubenart });
   
 });
 
