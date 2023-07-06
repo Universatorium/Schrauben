@@ -2,7 +2,7 @@ const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
 const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek','saph'];
-const herstellercharts =['details','schraubenart'];
+const herstellercharts =['details','schraubenart', 'schraubenumsatz'];
 //,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
 
 exports.getIndexPage = asyncHandler(async (req, res, next) => {
@@ -128,29 +128,26 @@ const total = totalSales[0].total;
 
 const schraubenarten = await schraube.aggregate([
   { $match: { Hersteller: hersteller } },
-  { $group: { _id: '$Schraube', count: { $sum: '$VerkaufteMenge' } } }
+  { $group: { _id: '$Schraube', count: { $sum: '$VerkaufteMenge' }, Preis: { $first: '$Preis' } } }
+
+  // { $group: { _id: '$Schraube', count: { $sum: '$VerkaufteMenge' }, Preis: '$Preis' } }
 ]);
 
 const percentageData = schraubenarten.map(schraube => ({
   schraubenart: schraube._id,
   percentage: (schraube.count / total) * 100
 }));
+const umsatz = schraubenarten.map(schraube => ({
+  schraubenart: schraube._id,
+  gesamtumsatz: (schraube.count * schraube.Preis)
+}));
 
 percentageData.forEach(schraube => {
-  console.log(`Schraube: ${schraube.schraubenart}, Prozent: ${schraube.percentage}%`);
+  // console.log(`Schraube: ${schraube.schraubenart}, Prozent: ${schraube.percentage}%`);
 });
-
-//test kann geloescht werden 
-const topSchrauben = await schraube.aggregate([
-  { $sort: { VerkaufteMenge: -1 } },
-  { $group: { _id: "$Schraube", VerkaufteMenge: { $first: "$VerkaufteMenge" } } },
-  { $sort: { VerkaufteMenge: -1 } },
-  { $limit: 3 },
-  { $project: { _id: 0, Schraube: "$_id", VerkaufteMenge: 1 } }
-]);
-console.log(schraubenarten);
-
-res.render('details', { hersteller, percentageData, herstellercharts, charts, schraubenarten });
+// console.log(schraubenarten)
+console.log(umsatz);
+res.render('details', { hersteller, percentageData, herstellercharts, charts, schraubenarten, umsatz });
   
 });
 

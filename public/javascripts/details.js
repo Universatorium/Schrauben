@@ -24,30 +24,3 @@ function drawdetails(data,hersteller) {
     }
   });
 }
-function drawschraubenart(data) {
-  new Chart(document.getElementById('schraubenart'), {
-    type: 'bar',
-    data: {
-      labels: data.map(schraube => schraube._id),
-      datasets: [{
-        label: 'prozentualer Anteil an monatlichen Verkäufen',
-        data: data.map(schraube => schraube.count),
-        fill: true,
-        backgroundColor: 'rgba(54, 162, 135, 0.2)',
-        borderColor: 'rgb(54, 162, 235)',
-        pointBackgroundColor: 'rgb(54, 162, 235)',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgb(54, 162, 235)'
-      }]
-    },
-    options: {
-      scales: {
-        r: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-}
-

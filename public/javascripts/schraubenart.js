@@ -1,13 +1,13 @@
-// Umsatz pro Schraubenart pro Monat: Zeigt den Umsatz für jede Schraubenart in einem ausgewählten Monat an.
+// Menge pro Schraubenart pro Monat: Zeigt die Menge für jede Schraubenart in einem ausgewählten Monat an.
 
 function drawschraubenart(data) {
   new Chart(document.getElementById('schraubenart'), {
     type: 'bar',
     data: {
-      labels: data.map(day => day.label),
+      labels: data.map(schraube => schraube._id),
       datasets: [{
-        label: 'Schraubenart',
-        data: data.map(day => day.totalSales),
+        label: 'Anzahl verkaufter Schrauben',
+        data: data.map(schraube => schraube.count),
         backgroundColor: [
           "Red", "Blue", "Yellow", "Green", "Grey", "Magenta", "Orange", "Brown"
         ],

@@ -8,6 +8,8 @@ block content
             canvas(id=hersteller, width="100", height="80")
         .chart2
             canvas(id='schraubenart', width="100", height="80")
+        .chart3
+            canvas(id="schraubenumsatz", width="100", height="80")
 
         
         
@@ -19,8 +21,8 @@ block content
         const percentage = !{JSON.stringify(percentageData)};
         const hersteller = "#{hersteller}";
         drawdetails(percentage,hersteller);
-
         const count = !{JSON.stringify(schraubenarten)};
         drawschraubenart(count);
-
+        const schraubenumsatz  = !{JSON.stringify(umsatz)};
+        drawschraubenumsatz(schraubenumsatz);
     
