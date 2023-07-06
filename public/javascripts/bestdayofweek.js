@@ -17,7 +17,7 @@ function drawBestDayOfWeekChart(data) {
     options: {
       scales: {
         y: {
-          min: 900
+          beginAtZero: false
         }
       }
     }

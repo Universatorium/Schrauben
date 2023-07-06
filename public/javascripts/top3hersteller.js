@@ -15,7 +15,7 @@ function drawTop3HerstellerChart(data) {
     options: {
       scales: {
         y: {
-          min: 230000
+          beginAtZero: false
         }
       }
     }

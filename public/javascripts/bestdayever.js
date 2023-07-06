@@ -18,7 +18,7 @@ function drawbestdayever(data) {
     options: {
       scales: {
         y: {
-          min: 24000
+          beginAtZero: false
         }
       }
     }
