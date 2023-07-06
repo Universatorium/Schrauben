@@ -1,10 +1,39 @@
 const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
-const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek'];
-const herstellercharts =['details', 'details2','HerstellerSchrauben'];
+const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek','saph'];
+const herstellercharts =['details'];
 //,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
+
 exports.getIndexPage = asyncHandler(async (req, res, next) => {
+
+  //Filtermenu dropdown
+  // Hole alle eindeutigen Schraubenarten aus der Datenbank
+  const schraubenarten = await schraube.distinct('Schraube');
+
+  // Holen alle eindeutigen Monate aus der Datenbank
+  const daten = await schraube.distinct('Datum');
+  const monateSet = new Set(daten.map(date => date.slice(0, 7)));
+  const monate = Array.from(monateSet);
+
+  const { schraubenart, monat } = req.query;
+  console.log('lero')
+  console.log(schraubenart, monat)
+    // Erzeuge eine MongoDB-Query, um nach dem ausgewählten Monat zu filtern
+    const query = monat ? { Datum: { $regex: `^${monat}` } } : {};
+
+    // Finde die Umsatzdaten für die ausgewählte Schraubenart und den Monat
+    const umsatzData = await schraube.aggregate([
+      { $match: { Schraube: schraubenart, ...query } },
+      { $group: { _id: '$Datum', umsatz: { $sum: '$VerkaufteMenge' } } },
+      { $sort: { _id: 1 } }
+    ]);
+
+    // Konvertiere das Datum in ein Dateiformat
+    const formattedData = umsatzData.map(data => ({
+      datum: new Date(data._id).toDateString(),
+      umsatz: data.umsatz
+    }));
 
   //Top 3 Schrauben
   const topSchrauben = await schraube.aggregate([
@@ -78,7 +107,12 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   
   console.log(bestDayOfWeek);
   
-  res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts });
+  console.log('Schraubenart:', schraubenart);
+    console.log('Monat:', monat);
+    console.log('Umsatzdaten:', umsatzData);
+    console.log('Formatierte Daten:', formattedData);
+
+  res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts, schraubenarten, monate , umsatzData: formattedData, monate });
 });
 
 //Prozentualer Anteil der Schraubenverkäufe von Hersteller X
