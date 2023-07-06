@@ -142,7 +142,6 @@ percentageData.forEach(schraube => {
 
 res.render('details', { hersteller, percentageData, herstellercharts });
   
- });
-
+});
 
 

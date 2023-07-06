@@ -17,7 +17,7 @@ function drawHerstellerSchrauben(data) {
     options: {
       scales: {
         y: {
-          min: 1
+          beginAtZero: false
         }
       }
     }
