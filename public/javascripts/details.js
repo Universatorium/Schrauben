@@ -24,14 +24,14 @@ function drawdetails(data,hersteller) {
     }
   });
 }
-function drawdetails2(data,hersteller2) {
-  new Chart(document.getElementById(hersteller2), {
+function drawschraubenart(data) {
+  new Chart(document.getElementById('schraubenart'), {
     type: 'bar',
     data: {
-      labels: data.map(schraube => schraube.schraubenart),
+      labels: data.map(schraube => schraube._id),
       datasets: [{
         label: 'prozentualer Anteil an monatlichen Verkäufen',
-        data: data.map(schraube => schraube.percentage),
+        data: data.map(schraube => schraube.count),
         fill: true,
         backgroundColor: 'rgba(54, 162, 135, 0.2)',
         borderColor: 'rgb(54, 162, 235)',

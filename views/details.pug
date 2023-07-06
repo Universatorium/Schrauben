@@ -7,7 +7,7 @@ block content
         .chart1
             canvas(id=hersteller, width="100", height="80")
         .chart2
-            canvas(id='top3Schrauben', width="100", height="80")
+            canvas(id='schraubenart', width="100", height="80")
 
         
         
@@ -20,7 +20,7 @@ block content
         const hersteller = "#{hersteller}";
         drawdetails(percentage,hersteller);
 
-        const topSchraubenData = !{JSON.stringify(topSchrauben)};
-        drawTop3SchraubenChart(topSchraubenData);
+        const count = !{JSON.stringify(schraubenarten)};
+        drawschraubenart(count);
 
     
