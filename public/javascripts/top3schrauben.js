@@ -7,7 +7,8 @@ function drawTop3SchraubenChart(data) {
         label: 'Top 3 Schrauben',
         data: data.map(schraube => schraube.VerkaufteMenge),
         backgroundColor: ['Magenta', 'Green', 'Orange'],
-        borderWidth: 1
+        borderWidth: 1,
+        hoverOffset: 50
       }]
     },
     options: {

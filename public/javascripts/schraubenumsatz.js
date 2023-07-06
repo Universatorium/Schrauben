@@ -18,6 +18,7 @@ function drawschraubenumsatz(data) {
     options: {
       scales: {
         y: {
+          min: 30000,
           beginAtZero: false
         }
       }

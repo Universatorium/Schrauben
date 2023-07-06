@@ -20,12 +20,22 @@ a {
   grid-column-start: 1;
   position: flex;
   flex-direction: row;
+  text-align: center;
   justify-content: center;
   height: 25em;
-  border: 2px;
+  /* border: 2px;
   border-style: double;
   border-color: #506972;
-  border-radius: 5px;
+  border-radius: 5px; */
+}
+.chart1details {
+  grid-column-start: 1;
+  position: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: start;
+  height: 25em;
 }
 
 .chart2 {
@@ -33,6 +43,8 @@ a {
   position: flex;
   flex-direction: row;
   justify-content: center;
+  text-align: center;
+  align-items: center;
   height: 25em;
   border: 2px;
   border-style:double;
@@ -51,8 +63,19 @@ a {
   border-color: #506972;
   border-radius: 5px;
 }
+.chart3details {
+  grid-column-start: 3;  /* Beginnt in der dritten Spalte */
+  position: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 50rem;
+  border: 2px;
+  border-style: double;
+  border-color: #506972;
+  border-radius: 5px;
+}
 
 .image{
-  height: 250px;
-  width: 250px;
+  height: 500px;
+  width: 500px;
 }

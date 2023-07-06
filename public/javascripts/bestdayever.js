@@ -11,13 +11,15 @@ function drawbestdayever(data) {
         backgroundColor: [
           "Red", "Blue", "Yellow"
         ],
-        borderWidth: 3
+        hoverOffset: 41,
+        borderWidth: 1
 
       }]
     },
     options: {
       scales: {
         y: {
+          min:25000,
           beginAtZero: false
         }
       }

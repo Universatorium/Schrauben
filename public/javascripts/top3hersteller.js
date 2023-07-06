@@ -7,9 +7,10 @@ function drawTop3HerstellerChart(data) {
         label: 'Top 3 Hersteller',
         data: data.map(schraube => schraube.VerkaufteMenge),
         backgroundColor: [
-          "Red", "Blue", "Yellow"
+          "Blue", "Red", "Yellow"
         ],
-        borderWidth: 1
+        borderWidth: 1,
+        hoverOffset: 41
       }]
     },
     options: {
