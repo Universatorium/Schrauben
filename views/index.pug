@@ -3,30 +3,22 @@ extends layout
 block content
   .chart-container
     .chart1
-      //- h1= title
-      //- p Welcome to #{title}
-      //- h1 Schrauben
       canvas(id="top3Hersteller", width="100", height="80")
-      //- canvas(id="HerstellerSchraube", width="100", height="80")
-
-      //- img(src="/images/schraube.jpg", alt="test")
-      //- pre= JSON.stringify(schrauben, null, 2)
     
     .chart2
       canvas(id="top3Schrauben", width="100", height="80")
 
     .chart3   
-      //- canvas(id="saph", width="100", height="80")
       canvas(id="bestdayever", width="100", height="80")
-    .chart4   
-      canvas(id="bestDayOfWeek", width="100", height="80")
+    //- .chart2   
+    //-   canvas(id="bestDayOfWeek", width="100", height="80")
 
-    .chart5   
-      canvas(id="bestDayOfWeek", width="100", height="80")
-      select(id="herstellerDropdown", onchange="updateHerstellerData()")
-        option(value="hersteller1") HECO
-        option(value="hersteller2") Wuerth
-        option(value="hersteller3") SWG
+    //- .chart5   
+    //-   canvas(id="bestDayOfWeek", width="100", height="80")
+    //-   select(id="herstellerDropdown", onchange="updateHerstellerData()")
+    //-     option(value="hersteller1") HECO
+    //-     option(value="hersteller2") Wuerth
+    //-     option(value="hersteller3") SWG
 
   each chart in charts
     script(src=`/javascripts/${chart}.js`)

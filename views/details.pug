@@ -1,17 +1,26 @@
 extends layout
 
 block content
-    h1= hersteller
-        img.image(src= "/images/" + ${hersteller.})
-    .chart
-      canvas(id=hersteller, width="100", height="80")
+    img.image(src= "/images/" + hersteller + '.svg')
+
+    .chart-container
+        .chart1
+            canvas(id=hersteller, width="100", height="80")
+        .chart2
+            canvas(id='HerstellerSchrauben', width="100", height="80")
+
+        
+        
 
     each chart in herstellercharts
         script(src=`/javascripts/${chart}.js`)
 
-    script.
-        const percentage = !{JSON.stringify(percentageData)};
-        const hersteller = "#{hersteller}";
-        drawdetails(percentage,hersteller);
+        script.
+            const percentage = !{JSON.stringify(percentageData)};
+            const hersteller = "#{hersteller}";
+            drawdetails(percentage,hersteller);
         
-        
+        script.
+            const herstellerschrauben = !{JSON.stringify(HerstellerSchrauben)};
+            drawHerstellerSchraubenChart(topSchraubenData);    
+    

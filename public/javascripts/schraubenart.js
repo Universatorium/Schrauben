@@ -6,7 +6,7 @@ function drawschraubenart(data) {
     data: {
       labels: data.map(day => day.label),
       datasets: [{
-        label: 'Monat XY',
+        label: 'Schraubenart',
         data: data.map(day => day.totalSales),
         backgroundColor: [
           "Red", "Blue", "Yellow", "Green", "Grey", "Magenta", "Orange", "Brown"
@@ -18,7 +18,7 @@ function drawschraubenart(data) {
     options: {
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: false
         }
       }
     }
