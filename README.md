@@ -41,5 +41,75 @@ Füge pro Hersteller eine Einzelansicht hinzu, die alle relevanten Analysen (Ums
 
 Binde das Logo des Herstellers ein und füge die passenden Diagramme hinzu.
 
---------------------------------------------------------------------------------------------------------------------
 
+#Necmettin:
+## Projektname: Schrauben
+
+Die Schraubenseite ist eine Node.js-Anwendung zur Verwaltung von Schraubendaten und einem Dashboard zur Visualisierung dieser Daten.
+
+## Installation
+
+1. Klonen Sie das Repository auf Ihren lokalen Computer.
+
+```bash
+git clone https://github.com/Universatorium/Schrauben
+```
+
+2. Wechseln Sie in das Projektverzeichnis.
+
+```bash
+cd Schrauben
+```
+
+3. Installieren Sie die Abhängigkeiten.
+
+```bash
+npm install
+```
+
+## Anforderungen
+
+Stellen Sie sicher, dass Ihr System die folgenden Voraussetzungen erfüllt:
+
+- Node.js (Version ^19.8.1)
+- MongoDB (Version ^5.6.0)
+
+## Verwendung des Dashboards
+
+1. Starten Sie die Anwendung.
+
+```bash
+npm start
+```
+
+2. Öffnen Sie den Webbrowser und navigieren Sie zur angezeigten URL, um auf das Dashboard zuzugreifen.  Standart: http://localhost:3000/
+
+### Hauptseite
+
+Nach dem Starten der Anwendung werden Sie zur Hauptseite des Dashboards weitergeleitet. Hier finden Sie verschiedene Funktionen und Optionen zur Verwaltung und Visualisierung von Schraubendaten.
+
+### Daten anzeigen
+
+Auf der Hauptseite werden verschiedene Diagramme angezeigt, die Daten zu Schrauben darstellen. Diese Diagramme umfassen:
+
+- Top 3 Schrauben nach Verkaufsmenge: Ein Donut-Diagramm, das die Top 3 Schrauben und ihre Verkaufsmengen darstellt.
+
+- Top 3 Hersteller: Ein Balkendiagramm, das die Top 3 Hersteller von Schrauben basierend auf Verkaufsmengen anzeigt.
+
+- Best Day: Ein Liniendiagramm, das den Verlauf der Verkaufsmenge an jedem Tag darstellt.
+
+- Best Day of Week: Ein Balkendiagramm, das den Durchschnitt der Verkaufsmenge an jedem Wochentag darstellt.
+
+## Mitwirkende
+
+- Thomash Kirsch
+- Matze
+- Angelo 
+- Till
+- Necmettin
+
+Wir freuen uns über Beiträge von Mitwirkenden.
+
+## Lizenz
+
+Dieses Projekt ist unter der [MIT-Lizenz](LICENSE) lizenziert. Weitere Informationen finden Sie in der Datei LICENSE.

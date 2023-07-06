@@ -1,9 +1,43 @@
 const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
-const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek'];
+
+
+const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek','saph'];
+const herstellercharts =['details','schraubenart', 'schraubenumsatz', 'saph'];
 //,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
+
 exports.getIndexPage = asyncHandler(async (req, res, next) => {
+
+  //Filtermenu dropdown
+  // Hole alle eindeutigen Schraubenarten aus der Datenbank
+  const schraubenarten = await schraube.distinct('Schraube');
+
+  // Holen alle eindeutigen Monate aus der Datenbank
+  const daten = await schraube.distinct('Datum');
+  const monateSet = new Set(daten.map(date => date.slice(0, 7)));
+  const monate = Array.from(monateSet);
+
+  const { schraubenart, monat } = req.query;
+  
+    // Erzeuge eine MongoDB-Query, um nach dem ausgewählten Monat zu filtern
+    const query = monat ? { Datum: { $regex: `^${monat}` } } : {};
+
+    // Finde die Umsatzdaten für die ausgewählte Schraubenart und den Monat
+    const umsatzData = await schraube.aggregate([
+      { $match: { Schraube: schraubenart, ...query } },
+      { $group: { _id: '$Datum', umsatz: { $sum: '$VerkaufteMenge' } } },
+      { $sort: { _id: 1 } }
+    ]);
+
+    // Konvertiere das Datum in ein Dateiformat
+    const formattedData = umsatzData.map(data => ({
+      datum: new Date(data._id).toDateString(),
+      umsatz: data.umsatz
+    }));
+  //Filter zuende
+
+  //Top 3 Schrauben
   const topSchrauben = await schraube.aggregate([
     { $sort: { VerkaufteMenge: -1 } },
     { $group: { _id: "$Schraube", VerkaufteMenge: { $first: "$VerkaufteMenge" } } },
@@ -13,6 +47,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   ]);
   console.log(topSchrauben);
 
+  //Top 3 Hersteller
   const topHersteller = await schraube.aggregate([
     { $group: { _id: "$Hersteller", VerkaufteMenge: { $sum: "$VerkaufteMenge" } } },
     { $sort: { VerkaufteMenge: -1 } },
@@ -21,6 +56,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   ]);
   console.log(topHersteller);
 
+  //Bester Verkaufstag insgesamt
   const bestday = await schraube.aggregate([
     {
       $group: {
@@ -73,53 +109,79 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   
   console.log(bestDayOfWeek);
   
-  res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts });
+  // console.log('Schraubenart:', schraubenart);
+  //   console.log('Monat:', monat);
+  //   console.log('Umsatzdaten:', umsatzData);
+  //   console.log('Formatierte Daten:', formattedData);
+
+  res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts, schraubenarten, umsatzData: formattedData, monate });
 });
 
+//Prozentualer Anteil der Schraubenverkäufe von Hersteller X
+exports.getDetailPage = asyncHandler(async (req, res, next) => {
+  const hersteller = req.params.hersteller;
 
-// exports.getSchrauben = asyncHandler(async (req, res, next) => {
-//   const schrauben = await schraube.find();
-//   res.render("index", { schrauben, charts });
-// });
+const totalSales = await schraube.aggregate([
+  { $match: { Hersteller: hersteller } },
+  { $group: { _id: null, total: { $sum: '$VerkaufteMenge' } } }
+]);
 
-// exports.gettopsales = asyncHandler(async (req, res, next) => {
-//   const topSchrauben = await schraube.aggregate([
-//     { $sort: { VerkaufteMenge: -1 } },
-//     { $group: { _id: "$Schraube", VerkaufteMenge: { $first: "$VerkaufteMenge" } } },
-//     { $sort: { VerkaufteMenge: -1 } },
-//     { $limit: 3 },
-//     { $project: { _id: 0, Schraube: "$_id", VerkaufteMenge: 1 } }
-//   ]);
-//   res.render("index", { schrauben: topSchrauben, charts });
-// });
+const total = totalSales[0].total; 
 
-// exports.getTopHersteller = asyncHandler(async (req, res, next) => {
-//   const topHersteller = await schraube.aggregate([
-//     { $group: { _id: "$Hersteller", VerkaufteMenge: { $sum: "$VerkaufteMenge" } } },
-//     { $sort: { VerkaufteMenge: -1 } },
-//     { $limit: 3 },
-//     { $project: { _id: 0, Hersteller: "$_id", VerkaufteMenge: 1 } }
-//   ]);
-//   res.render("index", { schrauben : topHersteller, charts  });
-// });
+// gesamtanzahl als zahl der Schrauben
+const schraubenarten = await schraube.aggregate([
+  { $match: { Hersteller: hersteller } },
+  { $group: { _id: '$Schraube', count: { $sum: '$VerkaufteMenge' }, Preis: { $first: '$Preis' } } }
 
+  // { $group: { _id: '$Schraube', count: { $sum: '$VerkaufteMenge' }, Preis: '$Preis' } }
+]);
 
-// exports.getBestSellingDay = asyncHandler(async (req, res, next) => {
-//   const bestday = await schraube.aggregate([
-//     {
-//       $group: {
-//         _id: {
-//           year: { $year: { $toDate: "$Datum" } }, // Konvertiert den String in ein Datum
-//           month: { $month: { $toDate: "$Datum" } },
-//           day: { $dayOfMonth: { $toDate: "$Datum" } }
-//         },
-//         totalSales: { $sum: "$VerkaufteMenge" }
-//       }
-//     },
-//     { $sort: { totalSales: -1 } },
-//     { $limit: 1 }
-//   ]);
-//   res.render("index", { schrauben : bestday, charts });
-// });
+//total in Prozent
+const percentageData = schraubenarten.map(schraube => ({
+  schraubenart: schraube._id,
+  percentage: (schraube.count / total) * 100
+}));
+const umsatz = schraubenarten.map(schraube => ({
+  schraubenart: schraube._id,
+  gesamtumsatz: (schraube.count * schraube.Preis)
+}));
 
+percentageData.forEach(schraube => {
+  // console.log(`Schraube: ${schraube.schraubenart}, Prozent: ${schraube.percentage}%`);
+});
+
+//Filtermenu dropdown
+  // Hole alle eindeutigen Schraubenarten aus der Datenbank
+  const schrauben = await schraube.distinct('Schraube');
+
+  // Holen alle eindeutigen Monate aus der Datenbank
+  const daten = await schraube.distinct('Datum');
+  const monateSet = new Set(daten.map(date => date.slice(0, 7)));
+  const monate = Array.from(monateSet);
+
+  const { schraubenart, monat } = req.query;
+  
+    // Erzeuge eine MongoDB-Query, um nach dem ausgewählten Monat zu filtern
+    const query = monat ? { Datum: { $regex: `^${monat}` } } : {};
+
+    // Finde die Umsatzdaten für die ausgewählte Schraubenart und den Monat
+    const umsatzData = await schraube.aggregate([
+      { $match: { Schraube: schraubenart,Hersteller: hersteller, ...query } },
+      { $group: { _id: '$Datum', umsatz: { $sum: '$VerkaufteMenge' } } },
+      { $sort: { _id: 1 } }
+    ]);
+
+    // Konvertiere das Datum in ein Dateiformat
+    const formattedData = umsatzData.map(data => ({
+      datum: new Date(data._id).toDateString(),
+      umsatz: data.umsatz
+    }));
+  //Filter zuende
+
+  console.log(umsatzData)
+  console.log(schraubenart)
+
+res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben, schraubenart, schraubenarten, umsatz });
+  
+});
 

@@ -1,21 +1,47 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-        .container
-          a.navbar-brand(href='#') My Website
-          button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
-            span.navbar-toggler-icon
-          #navbarNav.collapse.navbar-collapse
-            ul.navbar-nav
-              li.nav-item
-                a.nav-link(href='/') Home
-              li.nav-item
-                a.nav-link(href='top') Top Schrauben
-              li.nav-item
-                a.nav-link(href='Hersteller') Top Hersteller
-              li.nav-item
-                a.nav-link(href='besterTag') best Day
-              li.nav-item
-                a.nav-link(href='#') About
-              li.nav-item
-                a.nav-link(href='#') Services
-              li.nav-item
-                a.nav-link(href='#') Contact
+script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
+script(src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")
+
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+  .container
+    a.navbar-brand(href='#') My Website
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      ul.navbar-nav
+        li.nav-item
+          a.nav-link(href='/') Home
+        li.nav-item
+          .dropdown
+            a.nav-link.dropdown-toggle(href='#', id='herstellerDropdown', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Hersteller
+            .dropdown-menu(aria-labelledby='herstellerDropdown')
+              a.dropdown-item(href='/details/HECO') HECO
+              a.dropdown-item(href='/details/SWG') SWG
+              a.dropdown-item(href='/details/Wuerth') Wuerth
+        li.nav-item
+          a.nav-link(href='besterTag') best Day
+        li.nav-item
+          a.nav-link(href='javascript:void(0)', onclick='erstellePDF()') Generate PDF
+        li.nav-item
+          a.nav-link(href='#') Contact
+
+script.
+  function erstellePDF() {
+    var doc = new window.jspdf.jsPDF({ orientation: "landscape" });
+  
+    // Rufe die HTML-Elemente ab, die in das PDF eingefügt werden sollen.
+    var htmlElement = document.documentElement;
+  
+    // Konvertiere das HTML-Element in ein Canvas-Element.
+    html2canvas(htmlElement).then(function(canvas) {
+      // Erhalte das Canvas als Bilddaten-URL.
+      var imageData = canvas.toDataURL("image/jpeg", 1.0);
+  
+      // Füge das Bild zum PDF-Dokument hinzu.
+      doc.addImage(imageData, "JPEG", 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
+  
+      // Speichere das PDF-Dokument.
+      doc.save("webseite.pdf");
+    });
+  }

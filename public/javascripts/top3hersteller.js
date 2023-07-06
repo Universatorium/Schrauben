@@ -1,5 +1,3 @@
-// Top 3 Hersteller: Präsentiert die drei Hersteller mit den höchsten Verkaufszahlen.
-
 function drawTop3HerstellerChart(data) {
   new Chart(document.getElementById('top3Hersteller'), {
     type: 'bar',
@@ -12,15 +10,14 @@ function drawTop3HerstellerChart(data) {
           "Red", "Blue", "Yellow"
         ],
         borderWidth: 1
-
       }]
     },
     options: {
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: false
         }
       }
     }
-  });
-}   
+});
+}
