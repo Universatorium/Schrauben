@@ -21,7 +21,7 @@ a {
   position: flex;
   flex-direction: row;
   justify-content: center;
-  height: 30em;
+  height: 25em;
   border: 2px;
   border-style: double;
   border-color: #506972;
@@ -33,7 +33,7 @@ a {
   position: flex;
   flex-direction: row;
   justify-content: center;
-  height: 30em;
+  height: 25em;
   border: 2px;
   border-style:double;
   border-color: #506972;
@@ -42,6 +42,17 @@ a {
 
 .chart3 {
   grid-column-start: 3;  /* Beginnt in der dritten Spalte */
+  position: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 25em;
+  border: 2px;
+  border-style: double;
+  border-color: #506972;
+  border-radius: 5px;
+}
+.chart4 {
+  grid-column-start: 3;  /* Beginnt in der vierten Spalte */
   position: flex;
   flex-direction: row;
   justify-content: center;

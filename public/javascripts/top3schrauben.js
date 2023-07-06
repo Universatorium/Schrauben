@@ -13,7 +13,7 @@ function drawTop3SchraubenChart(data) {
     options: {
       scales: {
         y: {
-          beginAtZero: false
+          beginAtZero: true
         }
       }
     }
