@@ -150,7 +150,38 @@ percentageData.forEach(schraube => {
   // console.log(`Schraube: ${schraube.schraubenart}, Prozent: ${schraube.percentage}%`);
 });
 
-res.render('details', { hersteller, percentageData, herstellercharts, charts, schraubenarten, schraubenart, monate, umsatzData: formattedData, schrauben, umsatz });
+//Filtermenu dropdown
+  // Hole alle eindeutigen Schraubenarten aus der Datenbank
+  const schrauben = await schraube.distinct('Schraube');
+
+  // Holen alle eindeutigen Monate aus der Datenbank
+  const daten = await schraube.distinct('Datum');
+  const monateSet = new Set(daten.map(date => date.slice(0, 7)));
+  const monate = Array.from(monateSet);
+
+  const { schraubenart, monat } = req.query;
+  
+    // Erzeuge eine MongoDB-Query, um nach dem ausgewählten Monat zu filtern
+    const query = monat ? { Datum: { $regex: `^${monat}` } } : {};
+
+    // Finde die Umsatzdaten für die ausgewählte Schraubenart und den Monat
+    const umsatzData = await schraube.aggregate([
+      { $match: { Schraube: schraubenart,Hersteller: hersteller, ...query } },
+      { $group: { _id: '$Datum', umsatz: { $sum: '$VerkaufteMenge' } } },
+      { $sort: { _id: 1 } }
+    ]);
+
+    // Konvertiere das Datum in ein Dateiformat
+    const formattedData = umsatzData.map(data => ({
+      datum: new Date(data._id).toDateString(),
+      umsatz: data.umsatz
+    }));
+  //Filter zuende
+
+  console.log(umsatzData)
+  console.log(schraubenart)
+
+res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben, schraubenart });
   
 });
 
