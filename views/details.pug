@@ -6,8 +6,22 @@ block content
     .chart-container
         .chart1
             canvas(id=hersteller, width="100", height="80")
-        .chart2
-            canvas(id='top3Schrauben', width="100", height="80")
+        .chart2  
+            h1 Umsatz für #{schraubenart} im Monat #{monat}
+
+            form(action="/details/"+ hersteller method="GET")
+                select(id='schraubenartDropdown' name="schraubenart")
+                    option(value=''>Alle Schraubenarten)
+                    each schraubenart in schrauben
+                        option(value=schraubenart)= schraubenart
+                select(id='monatDropdown' name="monat")
+                    option(value=''>Alle Monate)
+                    each monat in monate
+                        option(value=monat)= monat
+                button(type="submit") Umsatz anzeigen
+    
+        .charts3
+            canvas(id="SchraubePerMonths", width="100", height="80")
 
         
         
@@ -15,12 +29,15 @@ block content
     each chart in herstellercharts
         script(src=`/javascripts/${chart}.js`)
 
+
     script.
         const percentage = !{JSON.stringify(percentageData)};
         const hersteller = "#{hersteller}";
         drawdetails(percentage,hersteller);
 
-        const topSchraubenData = !{JSON.stringify(topSchrauben)};
-        drawTop3SchraubenChart(topSchraubenData);
+        const umsatz = !{JSON.stringify(umsatzData)};
+        drawSchraubePerMonths(umsatz);
+
+
 
     

@@ -2,7 +2,7 @@ const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
 const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek','saph'];
-const herstellercharts =['details','top3schrauben'];
+const herstellercharts =['details','saph']; // Einbindung der /javascripts
 //,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
 
 exports.getIndexPage = asyncHandler(async (req, res, next) => {
@@ -17,8 +17,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   const monate = Array.from(monateSet);
 
   const { schraubenart, monat } = req.query;
-  console.log('lero')
-  console.log(schraubenart, monat)
+  
     // Erzeuge eine MongoDB-Query, um nach dem ausgewählten Monat zu filtern
     const query = monat ? { Datum: { $regex: `^${monat}` } } : {};
 
@@ -34,6 +33,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
       datum: new Date(data._id).toDateString(),
       umsatz: data.umsatz
     }));
+  //Filter zuende
 
   //Top 3 Schrauben
   const topSchrauben = await schraube.aggregate([
@@ -112,7 +112,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
     console.log('Umsatzdaten:', umsatzData);
     console.log('Formatierte Daten:', formattedData);
 
-  res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts, schraubenarten, monate , umsatzData: formattedData, monate });
+  res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts, schraubenarten, umsatzData: formattedData, monate });
 });
 
 //Prozentualer Anteil der Schraubenverkäufe von Hersteller X
@@ -124,13 +124,15 @@ const totalSales = await schraube.aggregate([
   { $group: { _id: null, total: { $sum: '$VerkaufteMenge' } } }
 ]);
 
-const total = totalSales[0].total;
+const total = totalSales[0].total; 
 
+// gesamtanzahl als zahl der Schrauben
 const schraubenarten = await schraube.aggregate([
   { $match: { Hersteller: hersteller } },
   { $group: { _id: '$Schraube', count: { $sum: '$VerkaufteMenge' } } }
 ]);
 
+//total in Prozent
 const percentageData = schraubenarten.map(schraube => ({
   schraubenart: schraube._id,
   percentage: (schraube.count / total) * 100
@@ -140,16 +142,41 @@ percentageData.forEach(schraube => {
   console.log(`Schraube: ${schraube.schraubenart}, Prozent: ${schraube.percentage}%`);
 });
 
-//test kann geloescht werden 
-const topSchrauben = await schraube.aggregate([
-  { $sort: { VerkaufteMenge: -1 } },
-  { $group: { _id: "$Schraube", VerkaufteMenge: { $first: "$VerkaufteMenge" } } },
-  { $sort: { VerkaufteMenge: -1 } },
-  { $limit: 3 },
-  { $project: { _id: 0, Schraube: "$_id", VerkaufteMenge: 1 } }
-]);
+//Filtermenu dropdown
+  // Hole alle eindeutigen Schraubenarten aus der Datenbank
+  const schrauben = await schraube.distinct('Schraube');
 
-res.render('details', { hersteller, percentageData, herstellercharts, charts, topSchrauben });
+  // Holen alle eindeutigen Monate aus der Datenbank
+  const daten = await schraube.distinct('Datum');
+  const monateSet = new Set(daten.map(date => date.slice(0, 7)));
+  const monate = Array.from(monateSet);
+
+  const { schraubenart, monat } = req.query;
+  
+    // Erzeuge eine MongoDB-Query, um nach dem ausgewählten Monat zu filtern
+    const query = {
+      Schraube: schraubenart,
+      Hersteller: hersteller,
+      ...(monat ? { Datum: { $regex: `^${monat}` } } : {})
+    };
+
+    // Finde die Umsatzdaten für die ausgewählte Schraubenart und den Monat
+    const umsatzData = await schraube.aggregate([
+      { $match: { query } },
+      { $group: { _id: '$Datum', umsatz: { $sum: '$VerkaufteMenge' } } },
+      { $sort: { _id: 1 } }
+    ]);
+
+    // Konvertiere das Datum in ein Dateiformat
+    const formattedData = umsatzData.map(data => ({
+      datum: new Date(data._id).toDateString(),
+      umsatz: data.umsatz
+    }));
+  //Filter zuende
+
+  console.log(umsatzData)
+
+res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben });
   
 });
 
