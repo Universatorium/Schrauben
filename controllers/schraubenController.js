@@ -109,10 +109,10 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   
   console.log(bestDayOfWeek);
   
-  console.log('Schraubenart:', schraubenart);
-    console.log('Monat:', monat);
-    console.log('Umsatzdaten:', umsatzData);
-    console.log('Formatierte Daten:', formattedData);
+  // console.log('Schraubenart:', schraubenart);
+  //   console.log('Monat:', monat);
+  //   console.log('Umsatzdaten:', umsatzData);
+  //   console.log('Formatierte Daten:', formattedData);
 
   res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts, schraubenarten, umsatzData: formattedData, monate });
 });
@@ -159,7 +159,7 @@ const topSchrauben = await schraube.aggregate([
   { $project: { _id: 0, Schraube: "$_id", VerkaufteMenge: 1 } }
 ]);
 
-res.render('details', { hersteller, percentageData, herstellercharts, charts, topSchrauben });
+res.render('details', { hersteller, percentageData, herstellercharts, charts, schraubenart, schraubenarten, umsatz });
   
 });
 
