@@ -1,6 +1,8 @@
 const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
+
+
 const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek','saph'];
 const herstellercharts =['details','saph']; // Einbindung der /javascripts
 //,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
@@ -154,15 +156,11 @@ percentageData.forEach(schraube => {
   const { schraubenart, monat } = req.query;
   
     // Erzeuge eine MongoDB-Query, um nach dem ausgewählten Monat zu filtern
-    const query = {
-      Schraube: schraubenart,
-      Hersteller: hersteller,
-      ...(monat ? { Datum: { $regex: `^${monat}` } } : {})
-    };
+    const query = monat ? { Datum: { $regex: `^${monat}` } } : {};
 
     // Finde die Umsatzdaten für die ausgewählte Schraubenart und den Monat
     const umsatzData = await schraube.aggregate([
-      { $match: { query } },
+      { $match: { Schraube: schraubenart,Hersteller: hersteller, ...query } },
       { $group: { _id: '$Datum', umsatz: { $sum: '$VerkaufteMenge' } } },
       { $sort: { _id: 1 } }
     ]);
@@ -175,8 +173,9 @@ percentageData.forEach(schraube => {
   //Filter zuende
 
   console.log(umsatzData)
+  console.log(schraubenart)
 
-res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben });
+res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben,schraubenart });
   
 });
 
