@@ -2,7 +2,7 @@ const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
 const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek','saph'];
-const herstellercharts =['details'];
+const herstellercharts =['details','top3schrauben'];
 //,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
 
 exports.getIndexPage = asyncHandler(async (req, res, next) => {
@@ -140,7 +140,16 @@ percentageData.forEach(schraube => {
   console.log(`Schraube: ${schraube.schraubenart}, Prozent: ${schraube.percentage}%`);
 });
 
-res.render('details', { hersteller, percentageData, herstellercharts });
+//test kann geloescht werden 
+const topSchrauben = await schraube.aggregate([
+  { $sort: { VerkaufteMenge: -1 } },
+  { $group: { _id: "$Schraube", VerkaufteMenge: { $first: "$VerkaufteMenge" } } },
+  { $sort: { VerkaufteMenge: -1 } },
+  { $limit: 3 },
+  { $project: { _id: 0, Schraube: "$_id", VerkaufteMenge: 1 } }
+]);
+
+res.render('details', { hersteller, percentageData, herstellercharts, charts, topSchrauben });
   
 });
 
