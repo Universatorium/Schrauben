@@ -183,7 +183,7 @@ percentageData.forEach(schraube => {
   
   const gesamtumsatzHersteller = gesamtumsatz[0].umsatz;
     
-
+  //Matze
   console.log(gesamtumsatzHersteller)
 
 res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben, schraubenart, schraubenarten, umsatz, gesamtumsatzHersteller });
