@@ -41,10 +41,10 @@ Die vollständige Dateistruktur des Projekts:
   - navbar.pug
   - startseite.pug
   - support.pug
-app.js
-README.md
-DATEISTRUKTUR.md
-SECURITY.md
+- app.js
+- README.md
+- DATEISTRUKTUR.md
+- SECURITY.md
 
 Anforderungen:
 
