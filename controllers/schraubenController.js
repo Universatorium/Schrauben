@@ -107,7 +107,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   
   const bestDayOfWeek = [...slice.slice(1), slice[0]];
   
-  console.log(bestDayOfWeek);
+  // console.log(bestDayOfWeek);
   
   // console.log('Schraubenart:', schraubenart);
   //   console.log('Monat:', monat);
@@ -154,7 +154,7 @@ percentageData.forEach(schraube => {
   // Hole alle eindeutigen Schraubenarten aus der Datenbank
   const schrauben = await schraube.distinct('Schraube');
 
-  // Holen alle eindeutigen Monate aus der Datenbank
+  // Hole alle eindeutigen Monate aus der Datenbank
   const daten = await schraube.distinct('Datum');
   const monateSet = new Set(daten.map(date => date.slice(0, 7)));
   const monate = Array.from(monateSet);
@@ -181,7 +181,7 @@ percentageData.forEach(schraube => {
   console.log(umsatzData)
   console.log(schraubenart)
 
-res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben, schraubenart, schraubenarten, umsatz });
+res.render('details', { hersteller, percentageData, herstellercharts, monate, umsatzData: formattedData, schrauben, schraubenart, schraubenarten, umsatz });
   
 });
 
