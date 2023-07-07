@@ -1,14 +1,14 @@
 const schraube = require('../models/schraube');
 const asyncHandler = require("express-async-handler");
 
-
-
+//Charts die fuer den Index eingebunden werden soll ->
 const charts = ['bestdayever','top3hersteller','top3schrauben','bestdayofweek','saph'];
+
+//Charts die fuer den Details seite eingebunden werden soll ->
 const herstellercharts =['details','schraubenart', 'schraubenumsatz', 'saph'];
-//,'gsmth','gsmth','HerstellerSchrauben','saph','schraubenart',
 
+//Controller fuer den Index -->
 exports.getIndexPage = asyncHandler(async (req, res, next) => {
-
   //Filtermenu dropdown
   // Hole alle eindeutigen Schraubenarten aus der Datenbank
   const schraubenarten = await schraube.distinct('Schraube');
@@ -54,7 +54,6 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
     { $limit: 3 },
     { $project: { _id: 0, Hersteller: "$_id", VerkaufteMenge: 1 } }
   ]);
-  console.log(topHersteller);
 
   //Bester Verkaufstag insgesamt
   const bestday = await schraube.aggregate([
@@ -86,7 +85,6 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
       }
     }
   ]);
-  console.log(bestday);
 
   //bestDayofWeek
   const sort = await schraube.aggregate([
@@ -107,7 +105,6 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   
   const bestDayOfWeek = [...slice.slice(1), slice[0]];
   
-  // console.log(bestDayOfWeek);
   
   // console.log('Schraubenart:', schraubenart);
   //   console.log('Monat:', monat);
@@ -117,7 +114,8 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts, schraubenarten, umsatzData: formattedData, monate, schraubenart });
 });
 
-//Prozentualer Anteil der Schraubenverkäufe von Hersteller X
+
+//Controller fuer den Deteils seite -->
 exports.getDetailPage = asyncHandler(async (req, res, next) => {
   const hersteller = req.params.hersteller;
 
@@ -178,10 +176,17 @@ percentageData.forEach(schraube => {
     }));
   //Filter zuende
 
-  console.log(umsatzData)
-  console.log(schraubenart)
+  const gesamtumsatz = await schraube.aggregate([
+    { $match: { Hersteller: hersteller, ...query } },
+    { $group: { _id: null, umsatz: { $sum: { $multiply: ['$Preis', '$VerkaufteMenge'] } } } }
+  ]);
+  
+  const gesamtumsatzHersteller = gesamtumsatz[0].umsatz;
+    
+  //Matze
+  console.log(gesamtumsatzHersteller)
 
-res.render('details', { hersteller, percentageData, herstellercharts, monate, umsatzData: formattedData, schrauben, schraubenart, schraubenarten, umsatz });
+res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben, schraubenart, schraubenarten, umsatz, gesamtumsatzHersteller });
   
 });
 
