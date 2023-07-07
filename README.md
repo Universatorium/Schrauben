@@ -10,7 +10,41 @@ a) Node.js und npm: Stellen Sie sicher, dass Sie Node.js und npm (Node Package M
 
 b) MongoDB: Installieren Sie MongoDB auf Ihrem System oder nutzen Sie eine gehostete MongoDB-Dienstleistung. Stellen Sie sicher, dass Sie die Verbindungs-URL und Anmeldeinformationen für Ihre MongoDB-Datenbank bereit haben.
 
-Die vollständige Dateistruktur des Projekts finden Sie in der [DATEISTRUKTUR.md](./DATEISTRUKTUR.md).
+Die vollständige Dateistruktur des Projekts:
+/Schrauben
+    /bin
+        -www
+    /controllers
+        -schraubenController.js
+    /models
+        -schraube.js
+    /public
+        /images
+            - ...
+        /javascripts
+            - ...
+        /stylesheets
+            -style.css
+    /routes
+        -index.js
+        -users.js
+    /src
+        -aquisitions.js
+        -api.js
+        -index.html
+    /views
+        -details.pug
+        -error.pug
+        -hilfe.üug
+        -index.pug
+        -layout.pug
+        -navbar.pug
+        -startseite.pug
+        -support.pug
+    app.js
+    README.md
+    DATEISTRUKTUR.md
+    SECURITY.md
 
 Anforderungen:
 
