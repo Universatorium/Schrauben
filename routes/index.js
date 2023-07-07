@@ -11,7 +11,10 @@ router.get("/", schrauben_controller.getIndexPage);
 //Detailsseite
 router.get("/details/:hersteller", schrauben_controller.getDetailPage);
 
-
+router.get('/hilfe', function(req, res) {
+    res.render('hilfe', { activePage: 'hilfe' });
+});
+    
 
 
 
