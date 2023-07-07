@@ -16,9 +16,23 @@ function drawdetails(data,hersteller) {
       }]
     },
     options: {
+      animations: {
+        tension: {
+          duration: 1000,
+          easing: 'linear',
+          from: 1,
+          to: 0,
+          loop: false
+        }
+      },
+      layout: {
+        padding: {
+            left: 50
+        }
+    },
       scales: {
         r: {
-          beginAtZero: false
+          beginAtZero: true
         }
       }
     }
