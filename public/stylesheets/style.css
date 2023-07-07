@@ -51,6 +51,21 @@ a {
   border-color: #506972;
   border-radius: 5px;
 }
+.chart2details {
+  grid-column-start: 2; /* Beginnt in der zweiten Spalte */
+  grid-row:unset;  
+  position: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  height: 25em;
+  border: 2px;
+  border-style:double;
+  border-color: #506972;
+  border-radius: 5px;
+}
 
 .chart3 {
   grid-column-start: 3;  /* Beginnt in der dritten Spalte */
@@ -83,5 +98,5 @@ a {
   max-height: 300px;
   max-width: 300px;
   margin: 20px;
-  border-radius: 80px;
+  border-radius: 20px;
 }

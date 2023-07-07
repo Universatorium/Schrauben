@@ -7,7 +7,7 @@ function drawSchraubePerMonths(data) {
     data: {
       labels: data.map(day => day.datum),
       datasets: [{
-        label: 'Umsatz von pro Tag',
+        label: 'Umsatz pro Tag',
         data: data.map(day => day.umsatz),
         fill: true,
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
