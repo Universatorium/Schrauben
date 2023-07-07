@@ -11,7 +11,7 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;  /* Teilt den Container in drei Spalten auf */
   grid-gap: 10px; /* Abstand zwischen den Elementen */
-  margin-top: 45px; 
+  margin-top: 60px; 
   padding: 20px;
   border: 1px;
 }
@@ -76,6 +76,6 @@ a {
 }
 
 .image{
-  height: 500px;
-  width: 500px;
+  height: 450px;
+  width: 450px;
 }
