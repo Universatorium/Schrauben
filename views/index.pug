@@ -16,7 +16,7 @@ block content
         select(id='monatDropdown' name="monat")
           option(value='2023-06'>Alle Monate)
           each monat in monate
-            option(value=monat)= monat
+            option(value=monat, selected=monat === monate[0])= monat
         = '\u00A0\u00A0\u00A0' 
         button(type="submit") Umsatz anzeigen
       canvas(id="SchraubePerMonths", width="80", height="60")
