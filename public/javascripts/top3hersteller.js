@@ -10,7 +10,6 @@ function drawTop3HerstellerChart(data) {
           "Blue", "Red", "Yellow"
         ],
         borderWidth: 1,
-        hoverOffset: 41
       }]
     },
     options: {
