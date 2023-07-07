@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    title Startseite
+    style.
+      body, html {
+        height: 100%;
+        margin: 0;
+      }
+      .bg {
+        background-image: url("/images/start.png");
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transition: transform 2s;
+      }
+      .bg.animate {
+        transform: translateY(-100%);
+      }
+  body
+    a#link(href='/home')
+      .bg#bg
+    script.
+      document.querySelector('#bg').onclick = function(event) {
+        event.preventDefault();
+        this.classList.add('animate');
+        setTimeout(function() {
+          window.location = document.querySelector('#link').href;
+        }, 2000);
+      }

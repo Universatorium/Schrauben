@@ -9,6 +9,17 @@ block content
       h1 {
         margin-bottom: 1.5rem;
       }
+      .col-md-3 {
+        animation: slideInFromLeft 1s ease-in-out;
+      }
+      @keyframes slideInFromLeft {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
     h3 Unsere Supporter
     .row
       .col-md-3
