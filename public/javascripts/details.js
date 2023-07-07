@@ -36,7 +36,7 @@ function drawdetails(data,hersteller) {
       },
       scales: {
         r: {
-          beginAtZero: true
+          beginAtZero: false
         }
       }
     }
