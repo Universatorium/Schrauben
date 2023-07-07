@@ -10,13 +10,13 @@ function drawSchraubePerMonths(data) {
         label: 'Umsatz von pro Tag',
         data: data.map(day => day.umsatz),
         fill: true,
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgb(255, 99, 132)',
-        pointBackgroundColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgb(54, 162, 235)',
+        pointBackgroundColor: 'rgb(54, 162, 235)',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgb(255, 99, 132)',
-        borderWidth: 1
+        pointHoverBorderColor: 'rgb(54, 162, 235)',
+        borderWidth:1
       }]
     },
     options: {
@@ -31,8 +31,12 @@ function drawSchraubePerMonths(data) {
       },
       scales: {
         y: {
-          beginAtZero: false
+          beginAtZero:false
         }
+      },
+      animation:{
+        duration:3000,
+        easing:'easeInOutQuint'
       }
     }
   });

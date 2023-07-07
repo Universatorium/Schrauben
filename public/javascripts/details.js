@@ -30,6 +30,10 @@ function drawdetails(data,hersteller) {
             left: 50
         }
     },
+      animation: {
+        duration: 2000,
+        easing: 'easeOutBounce'
+      },
       scales: {
         r: {
           beginAtZero: true

@@ -10,13 +10,16 @@ function drawgsmth(data) {
         label: 'Gesamtumsatz pro Hersteller für einen Monat',
         data: data.map(day => day.totalSales),
         backgroundColor: [
-          "Red", "Blue", "Yellow"
+          "#FF6384", "#36A2EB", "#FFCE56"
         ],
         borderWidth: 1
-      
       }]
     },
     options: {
+      animation: {
+        duration: 2000,
+        easing: 'easeOutBounce'
+      },
       scales: {
         y: {
           beginAtZero: false

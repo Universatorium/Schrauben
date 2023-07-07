@@ -14,8 +14,6 @@ Die vollständige Dateistruktur des Projekts finden Sie in der [DATEISTRUKTUR.md
 
 Anforderungen:
 
-mockup.jepg
-
 Übersichts-Dashboard:
 Top 3 Schrauben: Zeigt die drei Schraubenarten, die die höchsten Verkaufszahlen aufweisen.
 

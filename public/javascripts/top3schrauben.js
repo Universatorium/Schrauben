@@ -26,9 +26,18 @@ function drawTop3SchraubenChart(data) {
       datasets: [{
         label: 'Top 3 Schrauben',
         data: data.map(schraube => schraube.VerkaufteMenge),
-        backgroundColor: ['Magenta', 'Green', 'Orange'],
+        backgroundColor: [
+          "rgba(255, 0, 255, 0.8)",
+          "rgba(0, 128, 0, 0.8)",
+          "rgba(255, 165, 0, 0.8)"
+        ],
+        borderColor: [
+          "rgb(255, 0, 255)",
+          "rgb(0, 128, 0)",
+          "rgb(255, 165, 0)"
+        ],
         borderWidth: 1,
-        hoverOffset: 50
+        hoverOffset: 40
       }]
     },
     options: {
@@ -36,6 +45,10 @@ function drawTop3SchraubenChart(data) {
         y: {
           beginAtZero: true
         }
+      },
+      animation: {
+        duration: 3000,
+        easing: 'easeInOutCubic'
       }
     }
   });
