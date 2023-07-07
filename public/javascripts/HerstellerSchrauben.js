@@ -11,11 +11,17 @@ function drawHerstellerSchrauben(data) {
       datasets: [{
         label: 'Prozentualer Anteil', 
         data: data.map(day => day.totalSales),
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
         borderWidth: 2,
-        hoverOffset: 50
+        hoverOffset: 40
       }]
     },
     options: {
+      animation: {
+        animateRotate: true,
+        animateScale: true
+      },
       scales: {
         y: {
           beginAtZero: false
