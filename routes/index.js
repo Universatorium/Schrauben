@@ -15,7 +15,9 @@ router.get('/hilfe', function(req, res) {
     res.render('hilfe', { activePage: 'hilfe' });
 });
     
-
+router.get('/support', function(req, res) {
+    res.render('support', { activePage: 'support' });
+});
 
 
 
