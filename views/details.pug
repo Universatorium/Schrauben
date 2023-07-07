@@ -5,8 +5,9 @@ block content
     .chart-container
 
         .chart1details
-            img.image-container(src= "/images/" + hersteller + '.svg')
-
+            img.image(src= "/images/" + hersteller + '.svg')
+            h1 Gesamtumsatz
+            h1=gesamtumsatzHersteller.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
             
         .chart2
             canvas(id=hersteller, width="100", height="60")
