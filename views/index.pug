@@ -7,7 +7,7 @@ block content
       
       h5 Umsatz für #{schraubenart} pro Tag #{monat}
 
-      form(action="/" method="GET")
+      form(action="/home" method="GET")
         select(id='schraubenartDropdown' name="schraubenart")
           option(value=''>Alle Schraubenarten)
           each schraubenart in schraubenarten
