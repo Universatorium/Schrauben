@@ -114,7 +114,7 @@ exports.getIndexPage = asyncHandler(async (req, res, next) => {
   //   console.log('Umsatzdaten:', umsatzData);
   //   console.log('Formatierte Daten:', formattedData);
 
-  res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts, schraubenarten, umsatzData: formattedData, monate });
+  res.render("index", { topSchrauben, topHersteller, bestday, bestDayOfWeek, charts, schraubenarten, umsatzData: formattedData, monate, schraubenart });
 });
 
 //Prozentualer Anteil der Schraubenverkäufe von Hersteller X
