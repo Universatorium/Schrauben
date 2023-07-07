@@ -1,16 +1,16 @@
 extends layout
 
 block content
-    //- img.image(src= "/images/" + hersteller + '.svg')
 
     .chart-container
 
         .chart1details
             img.image(src= "/images/" + hersteller + '.svg')
-
+            h1 Gesamtumsatz
+            h1=gesamtumsatzHersteller.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
             
         .chart2
-            canvas(id=hersteller, width="200", height="80")
+            canvas(id=hersteller, width="100", height="60")
         .chart3
             canvas(id='schraubenart', width="100", height="60")
 
@@ -26,13 +26,13 @@ block content
                         option(value=schraubenart)= schraubenart
                 = '\u00A0\u00A0' 
                 select(id='monatDropdown' name="monat")
-                    option(value=''>Alle Monate)
+                    option(value='2023-06'>Alle Monate)
                     each monat in monate
-                        option(value=monat)= monat
+                        option(value=monat, selected=monat === monate[0])= monat
                 = '\u00A0\u00A0'  
                 
                 button(type="submit") Umsatz anzeigen
-            canvas(id="SchraubePerMonths", width="200", height="80")
+            canvas(id="SchraubePerMonths", width="100", height="60")
         .chart3
             canvas(id="schraubenumsatz", width="100", height="60")
 
