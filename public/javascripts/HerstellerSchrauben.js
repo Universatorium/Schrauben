@@ -11,7 +11,8 @@ function drawHerstellerSchrauben(data) {
       datasets: [{
         label: 'Prozentualer Anteil', 
         data: data.map(day => day.totalSales),
-        borderWidth: 2
+        borderWidth: 2,
+        hoverOffset: 50
       }]
     },
     options: {
