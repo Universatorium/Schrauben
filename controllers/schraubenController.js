@@ -176,10 +176,17 @@ percentageData.forEach(schraube => {
     }));
   //Filter zuende
 
-  console.log(umsatzData)
-  console.log(schraubenart)
+  const gesamtumsatz = await schraube.aggregate([
+    { $match: { Hersteller: hersteller, ...query } },
+    { $group: { _id: null, umsatz: { $sum: { $multiply: ['$Preis', '$VerkaufteMenge'] } } } }
+  ]);
+  
+  const gesamtumsatzHersteller = gesamtumsatz[0].umsatz;
+    
 
-res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben, schraubenart, schraubenarten, umsatz });
+  console.log(gesamtumsatzHersteller)
+
+res.render('details', { hersteller, percentageData, herstellercharts, monate,umsatzData: formattedData, schrauben, schraubenart, schraubenarten, umsatz, gesamtumsatzHersteller });
   
 });
 
