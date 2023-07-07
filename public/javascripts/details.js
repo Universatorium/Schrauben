@@ -16,6 +16,10 @@ function drawdetails(data,hersteller) {
       }]
     },
     options: {
+      animation: {
+        duration: 2000,
+        easing: 'easeOutBounce'
+      },
       scales: {
         r: {
           beginAtZero: false

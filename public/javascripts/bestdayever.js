@@ -9,11 +9,16 @@ function drawbestdayever(data) {
         label: 'Top 3 Verkaufstage',
         data: data.map(day => day.totalSales),
         backgroundColor: [
-          "Red", "Blue", "Yellow"
+          "rgba(54, 162, 235, 0.8)",
+          "rgba(255, 99, 132, 0.8)",
+          "rgba(255, 206, 86, 0.8)"
         ],
-        hoverOffset: 41,
+        borderColor: [
+          "rgb(54, 162, 235)",
+          "rgb(255, 99, 132)",
+          "rgb(255, 206, 86)"
+        ],
         borderWidth: 1
-
       }]
     },
     options: {
@@ -22,7 +27,11 @@ function drawbestdayever(data) {
           min:25000,
           beginAtZero: false
         }
-      }
+      },
+      animation: {
+        duration: 2000,
+        easing: 'easeOutBounce'
+      },
     }
   });
 }

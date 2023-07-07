@@ -19,6 +19,10 @@ function drawBestDayOfWeekChart(data) {
         y: {
           beginAtZero: false
         }
+      },
+      animation: {
+        duration: 2500,
+        easing: 'easeInOutQuart'
       }
     }
   });
