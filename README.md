@@ -45,6 +45,7 @@ Die vollständige Dateistruktur des Projekts:
 - README.md
 - DATEISTRUKTUR.md
 - SECURITY.md
+- Schraubenoverview.drawio.png
 
 Anforderungen:
 
