@@ -50,6 +50,7 @@ a {
   border-style:double;
   border-color: #506972;
   border-radius: 5px;
+  box-shadow: #506972;
 }
 .chart2details {
   grid-column-start: 2; /* Beginnt in der zweiten Spalte */

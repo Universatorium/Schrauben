@@ -120,7 +120,7 @@ npm start
 
 ### Hauptseite
 
-Nach dem Starten der Anwendung werden Sie zur Hauptseite des Dashboards weitergeleitet. Hier finden Sie verschiedene Funktionen und Optionen zur Verwaltung und Visualisierung von Schraubendaten.
+Nach dem Starten der Anwendung werden Sie zur Hauptseite des Dashboards weitergeleitet. Hier finden Sie verschiedene Funktionen und Optionen zur Verwaltung und Visualisierung von Schraubendaten, sowie eine Funktion, um die aktuelle Seite als PDF Dokument herunterzuladen.
 
 ### Daten anzeigen
 
@@ -139,7 +139,6 @@ Auf der Hauptseite werden verschiedene Diagramme angezeigt, die Daten zu Schraub
 - Thomash Kirsch
 - Matze
 - Angelo 
-- Till
 - Necmettin
 
 Wir freuen uns über Beiträge von Mitwirkenden.
