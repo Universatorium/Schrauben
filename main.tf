@@ -33,7 +33,7 @@ resource "aws_security_group_rule" "allow_http_outbound" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
 }
-Security Group nur für die Testinstanz
+#Security Group nur für die Testinstanz
 resource "aws_security_group" "ec2-sg-public" {
     name          = "public-security-group"
     description   = "Allow inbound traffic"
